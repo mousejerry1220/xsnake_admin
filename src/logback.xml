@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{HH:mm:ss.SSS} %-5level %logger{80} - %msg%n</Pattern>
+		</encoder>
+	</appender>
+ 	<logger name="org.springframework" level="ERROR"/>
+ 	<logger name="org.apache.cxf" level="ERROR"/>
+ 	<logger name="com.danga" level="ERROR"/>
+ 	<logger name="org.hibernate" level="ERROR"/>
+ 	<logger name="com.mchange" level="ERROR"/>
+ 	<logger name="org.apache.axis" level="ERROR"/>
+ 	<logger name="freemarker" level="ERROR"/>
+ 	
+	<root>
+		<level value="ERROR" />
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>
+

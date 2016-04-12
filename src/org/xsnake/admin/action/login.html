@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Login Page - XSnake Admin</title>
+		<meta name="description" content="User login page" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="${res}/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="${res}/assets/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="${res}/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="${res}/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="${res}/assets/css/ace-skins.min.css" />
+		
+		<script src='${res}/assets/js/jquery-1.10.2.min.js'></script>
+		<script src='${res}/assets/js/jquery.validate.min.js'></script>
+		<script src='${res}/assets/js/plugin/jquery-form.min.js'></script>
+		<script src='${res}/assets/js/jquery-ui-1.10.3.full.min.js'></script>
+		<script src='${res}/resource/js/ajax.js' ></script>
+</head>
+	<body class="login-layout">
+		<div class="main-container">
+			<div class="main-content">
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1">
+						<div class="login-container">
+							<div class="center">
+								<h1>
+									<i class="icon-leaf green"></i>
+									<span class="red">XSnake</span>
+									<span class="white">Admin</span>
+								</h1>
+								<h4 class="blue">&copy; xsnake.org</h4>
+							</div>
+
+							<div class="space-6"></div>
+
+							<div class="position-relative">
+								<div id="login-box" class="login-box visible widget-box no-border">
+									<div class="widget-body">
+										<div class="widget-main">
+											<h4 class="header blue lighter bigger">
+												<i class="icon-coffee green"></i>
+												请输入管理员账号及密码
+											</h4>
+
+											<div class="space-6"></div>
+
+											<form id="frm" action="login.html" method="post">
+												<fieldset>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="text" name="username" class="form-control" placeholder="账号" />
+															<i class="icon-user"></i>
+														</span>
+													</label>
+
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="password" name="password" class="form-control" placeholder="密码" />
+															<i class="icon-lock"></i>
+														</span>
+													</label>
+
+													<div class="space"></div>
+													<div class="clearfix">
+														<button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
+															<i class="icon-key"></i>
+															登录
+														</button>
+													</div>
+
+													<div class="space-4"></div>
+												</fieldset>
+											</form>
+
+										</div><!-- /widget-main -->
+
+										<div class="toolbar clearfix">
+											<div>
+												<a href="#" class="user-signup-link">
+													使用说明
+												</a>
+											</div>
+											<div>
+												<a href="#" class="user-signup-link">
+													&copy; xsnake.org
+												</a>
+											</div>
+										</div>
+									</div><!-- /widget-body -->
+								</div><!-- /login-box -->
+							</div><!-- /position-relative -->
+						</div>
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div>
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<script type="text/javascript">
+			
+			$(function() {
+				$("#frm").validate({
+					rules : {
+						username : {
+							required : true
+						},
+						password : {
+							required : true
+						}
+					},
+					// Messages for form validation
+					messages : {
+						username : {
+							required : '请输入您的登录用户名'
+						},
+						password : {
+							required : '请输入您的登录密码'
+						}
+					},
+					// Ajax form submition
+					submitHandler : function(form) {
+						ajaxPost({
+							form : form,
+							success:function(result){
+								window.location.href = "main.html";
+							},error:function(result){
+								window.location.href = "main.html";
+							}
+						});
+						return false;
+					},
+					// Do not change code below
+					errorPlacement : function(error, element) {
+						error.insertAfter(element.parent());
+					}
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='${res}/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+
+	</body>
+</html>
