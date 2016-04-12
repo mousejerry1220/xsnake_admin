@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 import com.mchange.v2.ser.SerializableUtils;
 
-public class QueryCondition implements Serializable{
+public class CacheQueryCondition implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -19,7 +19,7 @@ public class QueryCondition implements Serializable{
 		}
 	}
 	
-	public QueryCondition(Object... objects){
+	public CacheQueryCondition(Object... objects){
 		this.args = objects;
 	}
 	

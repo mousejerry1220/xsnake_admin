@@ -347,19 +347,19 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 	}
 
 	@Override
-	public IPage<?> search(String hql, int size, int goPage) {
+	public IPage search(String hql, int size, int goPage) {
 		return this.searchForPager(hql, null, size, goPage);
 	}
 
 	@Override
-	public IPage<?> search(String hql, Object[] args, int size, int goPage) {
+	public IPage search(String hql, Object[] args, int size, int goPage) {
 		return this.searchForPager(hql, args, size, goPage);
 	}
 
 	/**
 	 * 此方法相比searchForPager方法，可以再hql语句中使用SELECT子句(2013/8/3)
 	 */
-	public IPage<?> searchForPager(String hql, Object[] args, int pageLength, int currentPage) {
+	public IPage searchForPager(String hql, Object[] args, int pageLength, int currentPage) {
 		try {
 			String thql = null;
 			if (hql.indexOf("select") == -1) {
@@ -378,8 +378,7 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 		}
 	}
 
-	@SuppressWarnings("rawtypes")
-	private IPage<?> searchForPager(String hql, Object[] args, int pageLength,
+	private IPage searchForPager(String hql, Object[] args, int pageLength,
 			int currentPage, int count) {
 		try {
 			List<Object> results = findEntity(hql, args, (currentPage - 1) * pageLength, pageLength);
@@ -391,10 +390,10 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 
 	@Override
 	public <T> T $get(Class<T> c, Serializable id) {
-		T t = cache.get(new QueryCondition(c,id));
+		T t = cache.get(new CacheQueryCondition(c,id));
 		if(t == null){
 			t = get(c,id);
-			cache.put(new QueryCondition(c,id), t);
+			cache.put(new CacheQueryCondition(c,id), t);
 			return t;
 		}
 		return t;
@@ -402,10 +401,10 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 
 	@Override
 	public <T> T $findUniqueEntity(String hql) {
-		T t = cache.get(new QueryCondition(hql));
+		T t = cache.get(new CacheQueryCondition(hql));
 		if(t == null){
 			t = findUniqueEntity(hql);
-			cache.put(new QueryCondition(hql), t);
+			cache.put(new CacheQueryCondition(hql), t);
 			return t;
 		}
 		return t;
@@ -413,10 +412,10 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 
 	@Override
 	public <T> T $findUniqueEntity(String hql, Object args) {
-		T t = cache.get(new QueryCondition(hql,args));
+		T t = cache.get(new CacheQueryCondition(hql,args));
 		if(t == null){
 			t = findUniqueEntity(hql,args);
-			cache.put(new QueryCondition(hql,args), t);
+			cache.put(new CacheQueryCondition(hql,args), t);
 			return t;
 		}
 		return t;
@@ -424,10 +423,10 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 
 	@Override
 	public <T> T $findUniqueEntity(String hql, Object[] args) {
-		T t = cache.get(new QueryCondition(hql,args));
+		T t = cache.get(new CacheQueryCondition(hql,args));
 		if(t == null){
 			t = findUniqueEntity(hql,args);
-			cache.put(new QueryCondition(hql,args), t);
+			cache.put(new CacheQueryCondition(hql,args), t);
 			return t;
 		}
 		return t;
@@ -435,10 +434,10 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 
 	@Override
 	public <T> List<T> $findEntity(String hql) {
-		List<T> l = cache.get(new QueryCondition(hql));
+		List<T> l = cache.get(new CacheQueryCondition(hql));
 		if(l == null){
 			l = findEntity(hql);
-			cache.put(new QueryCondition(hql), l);
+			cache.put(new CacheQueryCondition(hql), l);
 			return l;
 		}
 		return l;
@@ -446,10 +445,10 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 
 	@Override
 	public <T> List<T> $findEntity(String hql, Object args) {
-		List<T> l = cache.get(new QueryCondition(hql,args));
+		List<T> l = cache.get(new CacheQueryCondition(hql,args));
 		if(l == null){
 			l = findEntity(hql,args);
-			cache.put(new QueryCondition(hql,args), l);
+			cache.put(new CacheQueryCondition(hql,args), l);
 			return l;
 		}
 		return l;
@@ -457,10 +456,10 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 
 	@Override
 	public <T> List<T> $findEntity(String hql, Object[] args) {
-		List<T> l = cache.get(new QueryCondition(hql,args));
+		List<T> l = cache.get(new CacheQueryCondition(hql,args));
 		if(l == null){
 			l = findEntity(hql,args);
-			cache.put(new QueryCondition(hql,args), l);
+			cache.put(new CacheQueryCondition(hql,args), l);
 			return l;
 		}
 		return l;
@@ -468,10 +467,10 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 
 	@Override
 	public <T> List<T> $findEntity(String hql, int start, int num) {
-		List<T> l = cache.get(new QueryCondition(hql,start,num));
+		List<T> l = cache.get(new CacheQueryCondition(hql,start,num));
 		if(l == null){
 			l = findEntity(hql,start,num);
-			cache.put(new QueryCondition(hql,start,num), l);
+			cache.put(new CacheQueryCondition(hql,start,num), l);
 			return l;
 		}
 		return l;
@@ -479,10 +478,10 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 
 	@Override
 	public <T> List<T> $findEntity(String hql, Object[] args, int start, int num) {
-		List<T> l = cache.get(new QueryCondition(hql,args,start,num));
+		List<T> l = cache.get(new CacheQueryCondition(hql,args,start,num));
 		if(l == null){
 			l = findEntity(hql,args,start,num);
-			cache.put(new QueryCondition(hql,args,start,num), l);
+			cache.put(new CacheQueryCondition(hql,args,start,num), l);
 			return l;
 		}
 		return l;
@@ -490,10 +489,10 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 
 	@Override
 	public List<Object[]> $findBySql(String sql) {
-		List<Object[]> l = cache.get(new QueryCondition(sql));
+		List<Object[]> l = cache.get(new CacheQueryCondition(sql));
 		if(l == null){
 			l = findBySql(sql);
-			cache.put(new QueryCondition(sql), l);
+			cache.put(new CacheQueryCondition(sql), l);
 			return l;
 		}
 		return l;
@@ -501,10 +500,10 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 
 	@Override
 	public List<Object[]> $findBySql(String sql, Object[] args) {
-		List<Object[]> l = cache.get(new QueryCondition(sql,args));
+		List<Object[]> l = cache.get(new CacheQueryCondition(sql,args));
 		if(l == null){
 			l = findBySql(sql,args);
-			cache.put(new QueryCondition(sql,args), l);
+			cache.put(new CacheQueryCondition(sql,args), l);
 			return l;
 		}
 		return l;
@@ -512,10 +511,10 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 
 	@Override
 	public List<Object[]> $findBySql(String sql, Object args) {
-		List<Object[]> l = cache.get(new QueryCondition(sql,args));
+		List<Object[]> l = cache.get(new CacheQueryCondition(sql,args));
 		if(l == null){
 			l = findBySql(sql,args);
-			cache.put(new QueryCondition(sql,args), l);
+			cache.put(new CacheQueryCondition(sql,args), l);
 			return l;
 		}
 		return l;
@@ -523,10 +522,10 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 
 	@Override
 	public List<Object[]> $findBySql(String sql, int start, int num) {
-		List<Object[]> l = cache.get(new QueryCondition(sql,start,num));
+		List<Object[]> l = cache.get(new CacheQueryCondition(sql,start,num));
 		if(l == null){
 			l = findBySql(sql,start,num);
-			cache.put(new QueryCondition(sql,start,num), l);
+			cache.put(new CacheQueryCondition(sql,start,num), l);
 			return l;
 		}
 		return l;
@@ -534,10 +533,10 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 
 	@Override
 	public List<Object[]> $findBySql(String sql, Object[] args, int start, int num) {
-		List<Object[]> l = cache.get(new QueryCondition(sql,args,start,num));
+		List<Object[]> l = cache.get(new CacheQueryCondition(sql,args,start,num));
 		if(l == null){
 			l = findBySql(sql,args,start,num);
-			cache.put(new QueryCondition(sql,args,start,num), l);
+			cache.put(new CacheQueryCondition(sql,args,start,num), l);
 			return l;
 		}
 		return l;
@@ -545,10 +544,10 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 
 	@Override
 	public List<Object[]> $findBySql(String sql, Object args, int start, int num) {
-		List<Object[]> l = cache.get(new QueryCondition(sql,args,start,num));
+		List<Object[]> l = cache.get(new CacheQueryCondition(sql,args,start,num));
 		if(l == null){
 			l = findBySql(sql,args,start,num);
-			cache.put(new QueryCondition(sql,args,start,num), l);
+			cache.put(new CacheQueryCondition(sql,args,start,num), l);
 			return l;
 		}
 		return l;
@@ -556,10 +555,10 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 
 	@Override
 	public <T> T $findUniqueBySql(String sql, Object[] args) {
-		T t = cache.get(new QueryCondition(sql,args));
+		T t = cache.get(new CacheQueryCondition(sql,args));
 		if(t == null){
 			t = findUniqueBySql(sql,args);
-			cache.put(new QueryCondition(sql,args), t);
+			cache.put(new CacheQueryCondition(sql,args), t);
 			return t;
 		}
 		return t;
@@ -567,10 +566,10 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 
 	@Override
 	public <T> T $findUniqueBySql(String sql, Object args) {
-		T t = cache.get(new QueryCondition(sql,args));
+		T t = cache.get(new CacheQueryCondition(sql,args));
 		if(t == null){
 			t = findUniqueBySql(sql,args);
-			cache.put(new QueryCondition(sql,args), t);
+			cache.put(new CacheQueryCondition(sql,args), t);
 			return t;
 		}
 		return t;
@@ -578,10 +577,10 @@ public class BaseDaoImpl implements BaseDao ,CacheBaseDao {
 
 	@Override
 	public <T> T $findUniqueBySql(String sql) {
-		T t = cache.get(new QueryCondition(sql));
+		T t = cache.get(new CacheQueryCondition(sql));
 		if(t == null){
 			t = findUniqueBySql(sql);
-			cache.put(new QueryCondition(sql), t);
+			cache.put(new CacheQueryCondition(sql), t);
 			return t;
 		}
 		return t;

@@ -28,7 +28,7 @@ public class EhCacheImpl implements ICache{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <T> T get(QueryCondition key) {
+	public <T> T get(CacheQueryCondition key) {
 		CacheManager cm = getCacheManager();
 		if(cm == null){
 			return null;
@@ -43,7 +43,7 @@ public class EhCacheImpl implements ICache{
 	}
 
 	@Override
-	public void put(QueryCondition key, Object value) {
+	public void put(CacheQueryCondition key, Object value) {
 		CacheManager cm = getCacheManager();
 		if(cm == null){
 			return ;

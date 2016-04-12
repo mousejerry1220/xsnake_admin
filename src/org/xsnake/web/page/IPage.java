@@ -3,7 +3,7 @@ package org.xsnake.web.page;
 import java.io.Serializable;
 import java.util.List;
 
-public interface IPage<T> extends Serializable{
+public interface IPage extends Serializable{
 
 	int getPageNext();
 
@@ -13,7 +13,7 @@ public interface IPage<T> extends Serializable{
 
 	List<Long> getPages();
 
-	List<T> getList();
+	List<?> getList();
 
 	int getPageSize();
 

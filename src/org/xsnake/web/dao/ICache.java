@@ -2,8 +2,8 @@ package org.xsnake.web.dao;
 
 public interface ICache  {
 
-	<T> T get(QueryCondition key);
+	<T> T get(CacheQueryCondition key);
 	
-	void put(QueryCondition key,Object value);
+	void put(CacheQueryCondition key,Object value);
 	
 }

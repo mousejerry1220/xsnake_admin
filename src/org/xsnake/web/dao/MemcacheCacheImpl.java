@@ -7,12 +7,12 @@ public class MemcacheCacheImpl extends MemCachedClient implements ICache {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T get(QueryCondition key) { 
+	public <T> T get(CacheQueryCondition key) { 
 		return (T)this.get(key.toString());
 	}
 
 	@Override
-	public void put(QueryCondition key, Object value) {
+	public void put(CacheQueryCondition key, Object value) {
 		this.set(key.toString(), value);
 	}
 

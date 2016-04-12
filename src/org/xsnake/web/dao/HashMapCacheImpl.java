@@ -8,12 +8,12 @@ public class HashMapCacheImpl extends HashMap<String, Object> implements ICache 
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T get(QueryCondition key) {
+	public <T> T get(CacheQueryCondition key) {
 		return (T)this.get(key.toString());
 	}
 
 	@Override
-	public void put(QueryCondition key, Object value) {
+	public void put(CacheQueryCondition key, Object value) {
 		this.put(key.toString(), value);
 	}
 

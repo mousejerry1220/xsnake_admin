@@ -77,9 +77,9 @@ public interface BaseDao {
 
 	public <T> T findUniqueBySql(String sql);
 	
-	public <T> IPage<T> search(String hql, int size, int goPage);
+	public IPage search(String hql, int size, int goPage);
 
-	public <T> IPage<T> search(String hql, Object[] args, int size, int goPage);
+	public IPage search(String hql, Object[] args, int size, int goPage);
 	
 }
 

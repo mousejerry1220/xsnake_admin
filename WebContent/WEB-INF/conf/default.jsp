@@ -148,6 +148,6 @@
 	<script src="${res}/assets/js/jquery.sparkline.min.js"></script>
 	<script src="${res}/assets/js/ace-elements.min.js"></script>
 	<script src="${res}/assets/js/ace.min.js"></script>
-
+	<script src="${res}/assets/js/plugin/bootstrap-tree.js"></script>
 </body>
 </html>

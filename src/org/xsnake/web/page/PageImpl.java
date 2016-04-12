@@ -3,7 +3,7 @@ package org.xsnake.web.page;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PageImpl<T> implements IPage<T> {
+public class PageImpl implements IPage {
 
 	private static final long serialVersionUID = 1L;
 
@@ -21,20 +21,19 @@ public class PageImpl<T> implements IPage<T> {
 	
 	int pageCurrent = 0;
 
-	List<T> list = null;
+	List<?> list = null;
 	
 	List<Long> pages = new ArrayList<Long>();
 	
-	public PageImpl(List<T> list,int pageNumber,int pageSize,int count ){
+	public PageImpl(List<?> list,int pageNumber,int pageSize,int count ){
 		
 		if(list==null){
 			
-			list = new ArrayList<T>();
+			list = new ArrayList<>();
 			
 		}
 		
 		this.list = list;
-		
 		
 		this.pageNumber = pageNumber;
 		
@@ -55,7 +54,6 @@ public class PageImpl<T> implements IPage<T> {
 			this.pageCurrent = (pageNumber <= pageCount) ? (pageNumber > 0 ? pageNumber : 1) : pageCount;
 			
 		}
-		
 		
 		this.pageNext = (pageCurrent+1>pageCount)?pageCount:(pageCurrent+1);
 		
@@ -111,7 +109,7 @@ public class PageImpl<T> implements IPage<T> {
 	}
 
 	@Override
-	public List<T> getList() {
+	public List<?> getList() {
 		return list;
 	}
 	
