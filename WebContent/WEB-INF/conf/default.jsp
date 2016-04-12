@@ -140,14 +140,14 @@
 	<script type="text/javascript">
 			if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
-	<script src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/js/typeahead-bs2.min.js"></script>
-	<script src="assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-	<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
-	<script src="assets/js/jquery.slimscroll.min.js"></script>
-	<script src="assets/js/jquery.sparkline.min.js"></script>
-	<script src="assets/js/ace-elements.min.js"></script>
-	<script src="assets/js/ace.min.js"></script>
+	<script src="${res}/assets/js/bootstrap.min.js"></script>
+	<script src="${res}/assets/js/typeahead-bs2.min.js"></script>
+	<script src="${res}/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="${res}/assets/js/jquery.ui.touch-punch.min.js"></script>
+	<script src="${res}/assets/js/jquery.slimscroll.min.js"></script>
+	<script src="${res}/assets/js/jquery.sparkline.min.js"></script>
+	<script src="${res}/assets/js/ace-elements.min.js"></script>
+	<script src="${res}/assets/js/ace.min.js"></script>
 
 </body>
 </html>
